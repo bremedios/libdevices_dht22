@@ -5,3 +5,5 @@ Makefile
 *.so
 install_manifest.txt
 dht22app
+cmake-build-debug
+.idea

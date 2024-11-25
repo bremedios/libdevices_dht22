@@ -12,6 +12,7 @@ set(PUBLIC_HEADER include/devices/dht22.h)
 
 set(HEADER_FILES include/devices/dht22.h)
 set(SOURCE_FILES src/dht22.cpp)
+#set(SOURCE_FILES src/dht22_stub.cpp)
 
 add_library(dht22 SHARED ${SOURCE_FILES} ${HEADER_FILES})
 

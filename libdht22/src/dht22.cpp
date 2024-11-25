@@ -34,18 +34,18 @@ namespace devices {
     } // ~dht22
 
     bool dht22::Create() {
-	m_nextRead = std::chrono::steady_clock::now() + std::chrono::milliseconds(m_readPeriod);
+	    m_nextRead = std::chrono::steady_clock::now() + std::chrono::milliseconds(m_readPeriod);
 
         if (0 > wiringPiSetup()) {
             std::cerr << "dht22::Create: wiringPiSetup failed" << std::endl;
 
-	    return false;
-	}
+	        return false;
+	    }
   
         if (setuid(getuid()) < 0)
         {
-            perror("Dropping privileges failed\n");
-            exit(EXIT_FAILURE);
+            std::cerr << "dht22::Create: setuid() failed" << std::endl;
+            return false;
         }
 
         return true;
@@ -56,24 +56,24 @@ namespace devices {
         uint8_t counter = 0;
         uint8_t j = 0, i;
 
-	memset(m_dat, 0, sizeof(m_dat));
+	    memset(m_dat, 0, sizeof(m_dat));
 
-	//  We need to sleep to ensure that we are not reading too
-	//  frequently.
-	for (;;) {
+	    //  We need to sleep to ensure that we are not reading too
+	    //  frequently.
+	    for (;;) {
 
             auto now = std::chrono::steady_clock::now();
 
-	    if (now > m_nextRead) {
-                break;
-	    }
+	        if (now > m_nextRead) {
+                    break;
+	        }
 
-	    std::this_thread::sleep_for(m_nextRead - now);
+	        std::this_thread::sleep_for(m_nextRead - now);
         }
   
-	// pull pin down for 18 milliseconds
-	pinMode(m_pin, OUTPUT);
-	digitalWrite(m_pin, HIGH);
+	    // pull pin down for 18 milliseconds
+	    pinMode(m_pin, OUTPUT);
+	    digitalWrite(m_pin, HIGH);
         delay(500);
         digitalWrite(m_pin, LOW);
         delay(20);
@@ -105,7 +105,7 @@ namespace devices {
             }
         }
 
-	m_nextRead = std::chrono::steady_clock::now() + std::chrono::milliseconds(m_readPeriod);
+	    m_nextRead = std::chrono::steady_clock::now() + std::chrono::milliseconds(m_readPeriod);
 
         // check we read 40 bits (8bit x 5 ) + verify checksum in the last byte
         // print it out if data is good
@@ -119,8 +119,8 @@ namespace devices {
             if ((m_dat[2] & 0x80) != 0)
                 t *= -1;
 
-	    m_temperature =t;
-	    m_humidity=h;
+	        m_temperature =t;
+	        m_humidity=h;
 
             return true;
         }
@@ -131,14 +131,13 @@ namespace devices {
     } // Read_
 
     bool dht22::Read(int count) {
-	int attempt = 0;
+	    int attempt = 0;
 
         for (int i = 0; i < count; ++i) {
             if (Read_())
                 return true;
         }
 
-	return false;
+	    return false;
     } // Read
 }; // devices
-
