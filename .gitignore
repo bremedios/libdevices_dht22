@@ -1,0 +1,7 @@
+CMakeCache.txt
+CMakeFiles
+Makefile
+*.cmake
+*.so
+install_manifest.txt
+dht22app
