@@ -7,6 +7,9 @@ add_subdirectory(libdht22)
 
 add_executable(dht22app dht22/main.cpp)
 
-target_link_libraries(dht22app PRIVATE dht22 wiringPi)
-#target_link_libraries(dht22app PRIVATE dht22)
+if(EXISTS "/usr/local/lib/libwiringPi.so")
+    target_link_libraries(dht22app PRIVATE dht22 wiringPi)
+else()
+    target_link_libraries(dht22app PRIVATE dht22)
+endif()
 
