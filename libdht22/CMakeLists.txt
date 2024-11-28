@@ -21,5 +21,9 @@ endif()
 
 add_library(devices_dht22 SHARED ${SOURCE_FILES} ${HEADER_FILES})
 
+if(EXISTS "/usr/local/lib/libwiringPi.so")
+    target_link_libraries(devices_dht22 PRIVATE wiringPi)
+endif()
+
 install(TARGETS devices_dht22 DESTINATION lib)
 install(FILES include/devices/dht22.h DESTINATION include/devices)

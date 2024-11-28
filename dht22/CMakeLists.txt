@@ -13,3 +13,5 @@ if(EXISTS "/usr/local/lib/libwiringPi.so")
 else()
     target_link_libraries(dht22app PRIVATE devices_dht22)
 endif()
+
+install(PROGRAMS dht22app DESTINATION bin)
