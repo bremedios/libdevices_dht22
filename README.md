@@ -25,26 +25,26 @@ sudo make install
 
 ## Using the library
 
-```c++
-bool Create();
-```
-Class Initialization.
+> ### Create
+> ```c++
+> bool Create();
+> ```
+> Class Initialization.
 
-```c++
-bool Read(int count=5);
-```
-:warning: This is a blocking call.
+> ### Read
+> ```c++
+> bool Read(int count=5);
+> ```
+> :warning: This is a blocking call and will enfore a 2 second read interval on the sensor.  This will block until (one of)
+> - Sensor data was read successfully
+> - count attempts have been tried and have failed
 
-This call will block until one of the following:
-- Sensor data was read successfully
-- count attempts have been tried and have failed
+> ### getTemperature
+> ```c++
+> float getTemperature() const
+> ```
 
-This call will enforce a 2 second retry delay on reading the temperature sensor.
-
-```c++
-float getTemperature() const
-```
-
-```c++
-float getHumidity() const
-```
+> ### getHumidity
+> ```c++
+> float getHumidity() const
+> ```
