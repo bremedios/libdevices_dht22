@@ -51,3 +51,16 @@ float getTemperature() const
 ```c++
 float getHumidity() const
 ```
+
+## Common Problems
+**Q:** My sensor always reports 15C as the temperature?
+
+**A:** The library will compile and link against a stub class if the wiringPi library cannot be found so that it can be
+used on systems that do not include the wiringPi library.  Please ensure that the wiringPi library is built and installed
+on your system.
+
+The build will check the following paths:
+- /usr/local/include/wiringPi.h
+- /usr/local/lib/libwiringPi.so
+
+---
