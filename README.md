@@ -35,11 +35,12 @@ Class Initialization.
 ```c++
 bool Read(int count=5);
 ```
-> [!WARNING] This is a blocking call and will enfore a 2 second read interval on the sensor.
-
-This will block until (one of)
-- Sensor data was read successfully
-- count attempts have been tried and have failed
+> [!WARNING]
+> This is a blocking call and will enfore a 2 second read interval on the sensor.
+>
+> This will block until (one of)
+> - Sensor data was read successfully
+> - count attempts have been tried and have failed
 
 ### getTemperature
 ```c++
