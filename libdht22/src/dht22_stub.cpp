@@ -5,6 +5,8 @@
 //
 #include "devices/dht22.h"
 
+#include <iostream>
+
 namespace devices {
     dht22::dht22() {
     } // dht22
@@ -17,7 +19,10 @@ namespace devices {
     } // Create
 
     bool dht22::Read_() {
-        m_temperature = 15.0f;
+        static auto start = std::chrono::steady_clock::now();
+        std::chrono::seconds duration = std::chrono::duration_cast<std::chrono::seconds>(std::chrono::steady_clock::now() - start);
+
+        m_temperature = 2.0f + static_cast<float>(duration.count() % 90);
         m_humidity = 55.0f;
 
         return true;
