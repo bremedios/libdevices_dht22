@@ -16,6 +16,8 @@ The code was modified to put it into a shared library and include a test app to 
 Some of the sensors bought online will require a resistor and some will not as some sellers include the resistor
 already connected.  Verify what you purchase to determine if you require the use of a resistor.
 
+This library uses pin 7 for connecting to the sensor.
+
 ## Building
 ```bash
 $ cmake .
