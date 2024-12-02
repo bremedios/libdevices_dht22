@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.25)
 
-project(dht22app)
+project(dht22app VERSION 0.01)
 
 set(CMAKE_CXX_STANDARD 20)
 
